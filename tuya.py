@@ -13,8 +13,12 @@ parser.add_argument('--off', help="turns light off", required=False, action='sto
 parser.add_argument('--bright','-b', help="sets bright of the light, <1-100>", required=False, type=int)
 parser.add_argument('-w', '--warm', help="sets warmness level for white color, <0-1000>", required=False, type=int)
 parser.add_argument('-c', '--color', help="sets color to: white, red, blue, green, pink", required=False, type=str)
+parser.add_argument('-k', '--key', help="you can specify key here, useful when you use more than one bulb", required=False, type=str)
 
 args = parser.parse_args()
+
+if args.key != None:
+    KEY = args.key
 
 if args.on:
     os.system("tuya-cli set --ip %s --id %s --key %s --protocol-version %s --dps 20 --set true" % (IP, ID, KEY,PROTOCOL_VERSION))
